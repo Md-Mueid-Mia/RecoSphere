@@ -1,13 +1,11 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import bgImg from '../../assets/login.jpg'
-import logo from '../../assets/logo.png'
 import { useContext } from 'react'
 import toast from 'react-hot-toast'
 import AuthContext from '../../provider/AuthContext'
 
 const Register = () => {
   const navigate = useNavigate()
-  const { signInWithGoogle, createUser, updateUserProfile, setUser } =
+  const { signInWitGoogle, createUser, updateUserProfile, setUser } =
     useContext(AuthContext)
 
   const handleSignUp = async e => {
@@ -34,14 +32,15 @@ const Register = () => {
 
   // Google Signin
   const handleGoogleSignIn = async () => {
-    try {
-      await signInWithGoogle()
-      toast.success('Signin Successful')
-      navigate('/')
-    } catch (err) {
-      console.log(err)
-      toast.error(err?.message)
-    }
+    signInWitGoogle()
+    .then((result) => {
+      const user = result.user;
+      navigate(location.state)
+      toast.success('Successfully login your account.')
+    })
+    .catch((error) => {
+     
+    });
   }
 
   return (
@@ -49,7 +48,7 @@ const Register = () => {
       <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl '>
         <div className='w-full px-6 py-8 md:px-8 lg:w-1/2'>
           <div className='flex justify-center mx-auto'>
-            <img className='w-auto h-7 sm:h-8' src={logo} alt='' />
+            <img className='w-auto h-7 sm:h-8' src='https://i.ibb.co.com/r08sLfd/Reco-Sphere.png' alt='' />
           </div>
 
           <p className='mt-3 text-xl text-center text-gray-600 '>

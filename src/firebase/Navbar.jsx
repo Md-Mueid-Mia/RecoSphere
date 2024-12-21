@@ -6,7 +6,7 @@ const Navbar = () => {
   const { signOutUser, user } = useContext(AuthContext);
   const links = (
     <>
-      {!user && (
+      
         <div className="space-x-5">
           <NavLink
             to="/"
@@ -24,36 +24,8 @@ const Navbar = () => {
           >
             Queries
           </NavLink>
-          <NavLink
-            to="/login"
-            className={({ isActive }) =>
-              `hover:underline ${isActive ? "font-bold" : ""}`
-            }
-          >
-            Log in
-          </NavLink>
-        </div>
-      )}
 
-      {/* Logged-in Menu */}
-      {user && (
-        <div className="space-x-5">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `hover:underline ${isActive ? "font-bold" : ""}`
-            }
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/queries"
-            className={({ isActive }) =>
-              `hover:underline ${isActive ? "font-bold" : ""}`
-            }
-          >
-            Queries
-          </NavLink>
+            {user?.email && <>
           <NavLink
             to="/recommendations-for-me"
             className={({ isActive }) =>
@@ -61,6 +33,14 @@ const Navbar = () => {
             }
           >
             Recommendations For Me
+          </NavLink>
+          <NavLink
+            to="/add-queries"
+            className={({ isActive }) =>
+              `hover:underline ${isActive ? "font-bold" : ""}`
+            }
+          >
+            Add Queries
           </NavLink>
           <NavLink
             to="/my-queries"
@@ -83,7 +63,15 @@ const Navbar = () => {
             className="bg-red-500 px-4 py-2 rounded hover:bg-red-600 "
           >
             Logout
-          </button>
+          </button></>}
+
+        </div>
+      
+
+      {/* Logged-in Menu */}
+      {user?.email && (
+        <div className="space-x-5">
+          
         </div>
       )}
     </>
@@ -91,42 +79,58 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100 overscroll-x-none">
       <div className="navbar-start flex items-center gap-3">
-        <img className="w-10" src="https://i.ibb.co.com/r08sLfd/Reco-Sphere.png" alt="" />
+        <img
+          className="w-10"
+          src="https://i.ibb.co.com/r08sLfd/Reco-Sphere.png"
+          alt=""
+        />
         <a className="text-xl font-bold">RecoSphere</a>
       </div>
       <div className="navbar-center hidden md:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
+        {!user?.email ? (
+          <NavLink
+            to="/login"
+            className={({ isActive }) =>
+              `hover:underline ${isActive ? "font-bold" : ""}`
+            }
           >
-            <div className="w-10 rounded-full">
-              <img
-                referrerPolicy="no-referrer"
-                alt="Tailwind CSS Navbar component"
-                src={user?.photoURL}
-              />
+            Log in
+          </NavLink>
+        ) : (
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                <img
+                  referrerPolicy="no-referrer"
+                  alt="Tailwind CSS Navbar component"
+                  src={user?.photoURL}
+                />
+              </div>
             </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            >
+              <li>
+                <a className="justify-between">
+                  Profile
+                  <span className="badge">New</span>
+                </a>
+              </li>
+              <li>
+                <a>Settings</a>
+              </li>
+            </ul>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-          >
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-          </ul>
-        </div>
+        )}
+
         <div className="dropdown">
           <div
             tabIndex={0}
