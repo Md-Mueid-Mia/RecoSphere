@@ -7,7 +7,7 @@ const Navbar = () => {
   const links = (
     <>
       
-        <div className="space-x-5">
+        <div className="space-x-5 flex flex-col md:flex-row items-center">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -60,7 +60,7 @@ const Navbar = () => {
           </NavLink>
           <button
             onClick={signOutUser}
-            className="bg-red-500 px-4 py-2 rounded hover:bg-red-600 "
+            className="  py-2 rounded  "
           >
             Logout
           </button></>}
@@ -68,12 +68,7 @@ const Navbar = () => {
         </div>
       
 
-      {/* Logged-in Menu */}
-      {user?.email && (
-        <div className="space-x-5">
-          
-        </div>
-      )}
+     
     </>
   );
   return (
