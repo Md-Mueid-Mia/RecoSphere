@@ -16,7 +16,7 @@ const RecentQueriesCard = ({ query }) => {
     recommendationCount
   } = query;
   return (
-    <div className="card bg-base-100  shadow-xl">
+    <div className="card bg-base-100  shadow-xl border p-4">
       <figure>
         <img
           src={productImageUrl}
