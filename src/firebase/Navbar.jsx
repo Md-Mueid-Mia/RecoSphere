@@ -1,9 +1,19 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../provider/AuthContext";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { signOutUser, user } = useContext(AuthContext);
+  const handleLogOutUser=() => {
+    signOutUser()
+    .then(res=>{
+      toast.success('User logged out')
+    })
+    .catch(err=>{
+      toast.error(err?.message)
+    })
+  }
   const links = (
     <>
       
@@ -59,7 +69,7 @@ const Navbar = () => {
             My Recommendations
           </NavLink>
           <button
-            onClick={signOutUser}
+            onClick={handleLogOutUser}
             className="  py-2 rounded  "
           >
             Logout

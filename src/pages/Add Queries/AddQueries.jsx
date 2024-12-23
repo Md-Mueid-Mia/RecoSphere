@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import AuthContext from "../../provider/AuthContext";
+import { axiosSecure } from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const AddQueries = () => {
   const { user } = useContext(AuthContext);
@@ -11,13 +13,33 @@ const AddQueries = () => {
     queryTitle: "",
     boycottReason: "",
   });
+  const timestamp = Date.now();
+  const currentDate = new Date(timestamp);
+  
+  const postedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
+    .toString()
+    .padStart(2, "0")}-${currentDate.getDate().toString().padStart(2, "0")}`;
 
+    const hours12 = currentDate.getHours() % 12 || 12;
+    const period = currentDate.getHours() >= 12 ? "PM" : "AM";
+    const PostedTime = `${hours12.toString().padStart(2, "0")}:${currentDate
+      .getMinutes()
+      .toString()
+      .padStart(2, "0")}:${currentDate.getSeconds().toString().padStart(2, "0")} ${period}`;
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     const UserName = user?.displayName;
     const email = user?.email;
     const photo = user?.photoURL;
     const recommendationCount = count;
+    const postDate = postedDate;
+    const postTime = PostedTime;
+
+  
+
+    // console.log("Current Date:", postDate + "," + postTime);
+    // console.log("Current Time:", formattedTime + " " + formattedDate);
 
     setFormData({
       ...formData,
@@ -25,11 +47,13 @@ const AddQueries = () => {
       UserName,
       email,
       photo,
-      recommendationCount
+      recommendationCount,
+      postDate,
+      postTime,
     });
   };
-  
-  const handleSubmit = (e) => {
+
+  const handleSubmit =async (e) => {
     e.preventDefault();
     console.log("Query Submitted:", formData);
     // Reset form
@@ -40,6 +64,19 @@ const AddQueries = () => {
       queryTitle: "",
       boycottReason: "",
     });
+
+    try{
+      // make a post request
+      const {data} = await axiosSecure.post(`/query`, formData)
+      if(data.insertedId){
+        toast.success("Query added successfully")
+      }
+      form.reset();
+      // navigate('/my-posted-jobs');
+  }
+  catch(error){
+      toast.error('something wrong',error.code);
+  }
   };
 
   return (

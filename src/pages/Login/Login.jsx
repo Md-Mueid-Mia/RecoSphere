@@ -7,17 +7,19 @@ const Login = () => {
   const location = useLocation()
   const from = location?.state || '/'
   console.log(from)
-  const { createNewUser, signInWitGoogle } = useContext(AuthContext)
+  const { signIn, signInWitGoogle, setUser } = useContext(AuthContext)
 
   // Google Signin
   const handleGoogleSignIn = async () => {
     signInWitGoogle()
       .then((result) => {
         const user = result.user;
+        setUser(user)
         navigate(location.state)
         toast.success('Successfully login your account.')
       })
       .catch((error) => {
+        console.log('Failed to login', error);
        
       });
   }
@@ -29,16 +31,24 @@ const Login = () => {
     const email = form.email.value
     const password = form.password.value
     console.log({ email, password })
-    try {
+   
       //User Login
-      await createNewUser(email, password)
-      toast.success('Signin Successful')
-      navigate(from, { replace: true })
-    } catch (err) {
-      console.log(err)
-      toast.error(err?.message)
-    }
+       signIn(email, password)
+       .then(res=>{
+        const user = res.user
+        setUser(user)
+        console.log(user);
+
+         toast.success('Signin Successful')
+         navigate(from, { replace: true })
+       })
+       .catch((error) => {
+       console.log('Error: ' + error);
+       });
+       
+    
   }
+ 
 
   return (
     <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>
