@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const RecentQueriesCard = ({ query }) => {
 //   console.log(query);
@@ -29,9 +30,9 @@ const RecentQueriesCard = ({ query }) => {
           <div className="badge badge-primary">NEW</div>
         </h2>
         <p>If a dog chews shoes whose shoes does he choose?</p>
-        <div className="card-actions justify-end">
-          <div className="badge badge-outline">Fashion</div>
-          <div className="badge badge-outline">Products</div>
+        <p>Recommendation Count: {recommendationCount}</p>
+        <div className="card-actions ">
+          <button className="btn btn-primary"><Link to='/queryDetails'>Recommend </Link></button>
         </div>
       </div>
     </div>
