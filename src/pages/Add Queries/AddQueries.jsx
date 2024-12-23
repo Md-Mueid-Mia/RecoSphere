@@ -57,13 +57,7 @@ const AddQueries = () => {
     e.preventDefault();
     console.log("Query Submitted:", formData);
     // Reset form
-    setFormData({
-      productName: "",
-      productBrand: "",
-      productImageUrl: "",
-      queryTitle: "",
-      boycottReason: "",
-    });
+    
 
     try{
       // make a post request
@@ -71,10 +65,17 @@ const AddQueries = () => {
       if(data.insertedId){
         toast.success("Query added successfully")
       }
-      form.reset();
+      setFormData({
+        productName: "",
+        productBrand: "",
+        productImageUrl: "",
+        queryTitle: "",
+        boycottReason: "",
+      });
       // navigate('/my-posted-jobs');
   }
   catch(error){
+    console.log(error);
       toast.error('something wrong',error.code);
   }
   };
