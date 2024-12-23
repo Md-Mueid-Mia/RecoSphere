@@ -14,6 +14,8 @@ import MyQueries from "../pages/My Queries/MyQueries";
 import MyRecommendations from "../pages/MyRecommendations/MyRecommendations";
 import PrivateRoute from './PrivateRoute';
 import AddQueries from "../pages/Add Queries/AddQueries";
+import QueryDetails from "../pages/QueryDetails";
+import UpdateQuery from "../pages/UpdateQuery";
 
   const router = createBrowserRouter([
     {
@@ -27,14 +29,6 @@ import AddQueries from "../pages/Add Queries/AddQueries";
         {
             path: '/login',
             element: <Login/>
-        },
-        {
-            path: '/register',
-            element: <Register/>
-        },
-        {
-          path: '/queries',
-          element: <Queries/>
         },
         {
           path: '/recommendations-for-me',
@@ -51,7 +45,23 @@ import AddQueries from "../pages/Add Queries/AddQueries";
         {
           path: '/my-recommendations',
           element: <PrivateRoute><MyRecommendations/></PrivateRoute>
-        }
+        },
+        {
+          path: '/queryDetails',
+          element: <PrivateRoute><QueryDetails/></PrivateRoute>
+        },
+        {
+          path: '/updateQuery',
+          element: <PrivateRoute><UpdateQuery/></PrivateRoute>
+        },
+        {
+            path: '/register',
+            element: <Register/>
+        },
+        {
+          path: '/queries',
+          element: <Queries/>
+        },
       ]
     },
     {

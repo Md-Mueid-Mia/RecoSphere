@@ -72,7 +72,7 @@ const AddQueries = () => {
         queryTitle: "",
         boycottReason: "",
       });
-      // navigate('/my-posted-jobs');
+      // navigate('/my-queries');
   }
   catch(error){
     console.log(error);

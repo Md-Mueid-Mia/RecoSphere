@@ -7,7 +7,7 @@ const ContactForm = () => {
   return (
     <div className="flex flex-col md:flex-row p-8 md:p-16">
       {/* Left Section */}
-      <div className="bg-blue-700 text-white p-8 md:w-1/2 rounded-lg p-8">
+      <div className="bg-blue-700 text-white p-8 md:w-1/2 rounded-lg ">
         <h2 className="text-5xl font-bold mb-8 mt-4 flex gap-3"><RiMessage2Line /> Let's talk</h2>
         <div className="mb-6 pt-8">
           <div className="flex items-center mb-2">
@@ -98,7 +98,7 @@ const ContactForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-purple-500 text-white rounded-lg p-2 font-semibold hover:bg-purple-600"
+            className="w-full bg-blue-700 text-white rounded-lg p-2 font-semibold hover:bg-blue-600"
           >
             Submit
           </button>

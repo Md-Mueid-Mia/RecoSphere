@@ -17,7 +17,7 @@ const Navbar = () => {
   const links = (
     <>
       
-        <div className="space-x-5 flex flex-col md:flex-row items-center">
+        <div className="space-x-5 flex flex-col md:flex-row items-center justify-center">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -159,7 +159,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52  right-2 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-64  right-2 p-2 shadow"
           >
             <div className="">{links}</div>
           </ul>
