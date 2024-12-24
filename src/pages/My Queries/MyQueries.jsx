@@ -19,6 +19,7 @@ const MyQueries = () => {
     axiosSecure
       .get(`/queries/${user?.email}`)
       .then((response) => {
+        console.log(response);
         setQueries(response?.data);
       })
       .catch((error) => {

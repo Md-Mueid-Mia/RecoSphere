@@ -41,6 +41,7 @@ const AddQueries = () => {
       [name]: value,
       UserName,
       email,
+      recommendation: [],
       photo,
       recommendationCount,
       postDate,
@@ -50,7 +51,7 @@ const AddQueries = () => {
 
   const handleSubmit =async (e) => {
     e.preventDefault();
-    // console.log("Query Submitted:", formData);
+    console.log("Query Submitted:", formData);
     // Reset form
     
 

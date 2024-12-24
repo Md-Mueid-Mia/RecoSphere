@@ -47,7 +47,7 @@ import UpdateQuery from "../pages/UpdateQuery";
           element: <PrivateRoute><MyRecommendations/></PrivateRoute>
         },
         {
-          path: '/queryDetails',
+          path: '/queryDetails/:id',
           element: <PrivateRoute><QueryDetails/></PrivateRoute>
         },
         {

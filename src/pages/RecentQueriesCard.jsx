@@ -14,7 +14,8 @@ const RecentQueriesCard = ({ query }) => {
     productImageUrl,
     productName,
     queryTitle,
-    recommendationCount
+    recommendationCount,
+    _id
   } = query;
   return (
     <div className="card bg-base-100  shadow-xl border p-4">
@@ -24,15 +25,15 @@ const RecentQueriesCard = ({ query }) => {
           alt="Shoes"
         />
       </figure>
-      <div className="card-body">
+      <div className="card-body flex-none">
         <h2 className="card-title">
           {productName}
-          <div className="badge badge-primary">NEW</div>
         </h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
+        <p>{productBrand}</p>
+        <p>{queryTitle}</p>
         <p>Recommendation Count: {recommendationCount}</p>
         <div className="card-actions ">
-          <button className="btn btn-primary"><Link to='/queryDetails'>Recommend </Link></button>
+          <button className="btn btn-primary"><Link to={`/queryDetails/${_id}`}>Recommend </Link></button>
         </div>
       </div>
     </div>
