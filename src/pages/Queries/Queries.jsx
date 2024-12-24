@@ -10,7 +10,7 @@ const Queries = () => {
             .then(response => {
                 
                 setQueries(response.data); // Set sorted data to state
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch(error => {
                 console.error("Error fetching data:", error);

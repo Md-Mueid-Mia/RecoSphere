@@ -51,7 +51,7 @@ import UpdateQuery from "../pages/UpdateQuery";
           element: <PrivateRoute><QueryDetails/></PrivateRoute>
         },
         {
-          path: '/updateQuery',
+          path: '/updateQuery/:id',
           element: <PrivateRoute><UpdateQuery/></PrivateRoute>
         },
         {

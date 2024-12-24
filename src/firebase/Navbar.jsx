@@ -16,11 +16,11 @@ const Navbar = () => {
   };
   const links = (
     <>
-      <div className="space-x-5 flex flex-col md:flex-row items-center justify-center">
+      <div className="space-x-5 flex flex-col items-start lg:flex-row lg:items-center justify-center">
         <NavLink
           to="/"
           className={({ isActive }) =>
-            `hover:underline ${isActive ? "font-bold" : ""}`
+            `hover:underline ml-5 ${isActive ? "font-bold" : ""}`
           }
         >
           Home
@@ -68,7 +68,7 @@ const Navbar = () => {
             >
               My Recommendations
             </NavLink>
-            <button onClick={handleLogOutUser} className="  py-2 rounded  ">
+            <button onClick={handleLogOutUser} className="  rounded  ">
               Logout
             </button>
           </>
@@ -161,7 +161,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-64  right-2 p-2 shadow"
+            className="menu dropdown-content bg-base-100 rounded-box z-50 mt-3 w-64  right-2 p-2 shadow"
           >
             <div className="">{links}</div>
           </ul>

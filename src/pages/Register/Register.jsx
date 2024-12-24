@@ -16,7 +16,7 @@ const Register = () => {
     const name = form.name.value;
     const photo = form.photo.value;
     const pass = form.password.value;
-    console.log({ email, pass, name, photo });
+    // console.log({ email, pass, name, photo });
     if (!regex.test(pass)) {
       toast.error(
         "Password must contain at least one uppercase and one lowercase letter."
@@ -35,7 +35,7 @@ const Register = () => {
         setUser(user);
         updateUserProfile({ displayName: name, photoURL: photo })
           .then(() => {
-            console.log("Profile updated successfully");
+            // console.log("Profile updated successfully");
             navigate("/");
           })
           .catch((error) => {
@@ -43,7 +43,7 @@ const Register = () => {
           });
       })
       .catch((error) => {
-        console.log(error.code);
+        // console.log(error.code);
         toast.error(error?.message);
       });
   };

@@ -22,16 +22,17 @@ const MyQueriesCard = ({ query, deleteProduct }) => {
       <figure>
         <img src={productImageUrl} alt="Shoes" />
       </figure>
-      <div className="card-body">
+      <div className="card-body flex-none">
         <h2 className="card-title">
           {productName}
-          <div className="badge badge-primary">NEW</div>
         </h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
-        <div className="card-actions ">
-          <button><Link to='/queryDetails' className="btn btn-primary">View Details</Link></button>
-          <button> <Link to='/updateQuery' className="btn btn-primary">Update</Link></button>
-          <button onClick={()=>deleteProduct(_id)}> <Link className="btn btn-primary">Delete </Link></button>
+        <p>{productBrand}</p>
+        <p>{queryTitle}</p>
+        <p>Recommendation: {recommendationCount}</p>
+        <div className="flex flex-col md:flex-row gap-4">
+          <button className="" ><Link to='/queryDetails' className="btn btn-primary">View Details</Link></button>
+          <button className="" > <Link to={`/updateQuery/${_id}`} className="btn btn-primary">Update</Link></button>
+          <button className="" onClick={()=>deleteProduct(_id)}> <Link className="btn btn-primary">Delete </Link></button>
          
          
         </div>

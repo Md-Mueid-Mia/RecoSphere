@@ -36,11 +36,6 @@ const AddQueries = () => {
     const postDate = postedDate;
     const postTime = PostedTime;
 
-  
-
-    // console.log("Current Date:", postDate + "," + postTime);
-    // console.log("Current Time:", formattedTime + " " + formattedDate);
-
     setFormData({
       ...formData,
       [name]: value,
@@ -55,7 +50,7 @@ const AddQueries = () => {
 
   const handleSubmit =async (e) => {
     e.preventDefault();
-    console.log("Query Submitted:", formData);
+    // console.log("Query Submitted:", formData);
     // Reset form
     
 
@@ -75,7 +70,7 @@ const AddQueries = () => {
       // navigate('/my-queries');
   }
   catch(error){
-    console.log(error);
+    // console.log(error);
       toast.error('something wrong',error.code);
   }
   };
