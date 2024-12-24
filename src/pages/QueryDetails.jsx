@@ -82,6 +82,11 @@ useEffect(() => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (email === user?.email) {
+        toast.error("You cannot recommend this product to yourself.");
+        return; // Exit early to prevent the recommendation submission
+      }
+    
   
     const newRecommendation = {
       queryId: _id,
