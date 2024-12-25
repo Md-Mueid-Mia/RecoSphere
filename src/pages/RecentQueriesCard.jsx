@@ -23,6 +23,7 @@ const RecentQueriesCard = ({ query }) => {
         <img
           src={productImageUrl}
           alt="Shoes"
+           className="w-[255px] h-[255px]"
         />
       </figure>
       <div className="card-body flex-none">

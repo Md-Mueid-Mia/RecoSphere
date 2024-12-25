@@ -20,7 +20,7 @@ const MyQueriesCard = ({ query, deleteProduct }) => {
   return (
     <div className="card bg-base-100  shadow-xl border p-4">
       <figure>
-        <img src={productImageUrl} alt="Shoes" className="w-[255px]" />
+        <img src={productImageUrl} alt="Shoes" className="w-[255px] h-[255px]" />
       </figure>
       <div className="card-body flex-none">
         <h2 className="card-title">

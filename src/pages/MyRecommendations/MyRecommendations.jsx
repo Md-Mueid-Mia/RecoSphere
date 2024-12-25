@@ -12,7 +12,9 @@ const MyRecommendations = () => {
   }, []);
 
   const fetchAllRecommendations = async () => {
-    axiosSecure.get(`/recommendation/${user?.email}`).then((response) => {
+    axiosSecure.get(`/recommendation/${user?.email}`)
+    .then((response) => {
+        console.log(response.data);
       setRecommendations(response.data);
     });
   };
@@ -43,7 +45,7 @@ const MyRecommendations = () => {
       }
     });
   };
-
+console.log(recommendations);
   return (
     <div className="py-12">
       My Recommendations ({recommendations ? recommendations.length : 0})
