@@ -20,7 +20,7 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            `hover:underline ml-5 ${isActive ? "font-bold" : ""}`
+            `hover:underline ml-5 ${isActive ? "font-bold text-blue-700" : ""}`
           }
         >
           Home
@@ -28,7 +28,7 @@ const Navbar = () => {
         <NavLink
           to="/queries"
           className={({ isActive }) =>
-            `hover:underline ${isActive ? "font-bold" : ""}`
+            `hover:underline ${isActive ? "font-bold text-blue-700" : ""}`
           }
         >
           Queries
@@ -39,7 +39,7 @@ const Navbar = () => {
             <NavLink
               to="/recommendations-for-me"
               className={({ isActive }) =>
-                `hover:underline ${isActive ? "font-bold" : ""}`
+                `hover:underline ${isActive ? "font-bold text-blue-700" : ""}`
               }
             >
               Recommendations For Me
@@ -47,7 +47,7 @@ const Navbar = () => {
             <NavLink
               to="/add-queries"
               className={({ isActive }) =>
-                `hover:underline ${isActive ? "font-bold" : ""}`
+                `hover:underline ${isActive ? "font-bold  text-blue-700" : ""}`
               }
             >
               Add Queries
@@ -55,7 +55,7 @@ const Navbar = () => {
             <NavLink
               to="/my-queries"
               className={({ isActive }) =>
-                `hover:underline ${isActive ? "font-bold" : ""}`
+                `hover:underline ${isActive ? "font-bold text-blue-700" : ""}`
               }
             >
               My Queries
@@ -63,7 +63,7 @@ const Navbar = () => {
             <NavLink
               to="/my-recommendations"
               className={({ isActive }) =>
-                `hover:underline ${isActive ? "font-bold" : ""}`
+                `hover:underline ${isActive ? "font-bold text-blue-700" : ""}`
               }
             >
               My Recommendations
