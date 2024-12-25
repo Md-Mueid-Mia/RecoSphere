@@ -33,14 +33,31 @@ const QueryDetails = ({ queryId, currentUser }) => {
     _id,
   } = query || {};
 
-  
+  const timestamp = Date.now();
+  const currentDate = new Date(timestamp);
 
-useEffect(() => {
+  const postedDate = `${currentDate.getFullYear()}-${(
+    currentDate.getMonth() + 1
+  )
+    .toString()
+    .padStart(2, "0")}-${currentDate.getDate().toString().padStart(2, "0")}`;
+
+  const hours12 = currentDate.getHours() % 12 || 12;
+  const period = currentDate.getHours() >= 12 ? "PM" : "AM";
+  const PostedTime = `${hours12.toString().padStart(2, "0")}:${currentDate
+    .getMinutes()
+    .toString()
+    .padStart(2, "0")}:${currentDate
+    .getSeconds()
+    .toString()
+    .padStart(2, "0")} ${period}`;
+
+  useEffect(() => {
     if (_id) {
       fetchAllRecommendations();
     }
   }, [_id]);
-  
+
   const fetchAllRecommendations = async () => {
     try {
       const { data } = await axiosSecure.get(`/recommendation?queryId=${_id}`);
@@ -53,18 +70,18 @@ useEffect(() => {
     } catch (error) {
       setError("Error fetching recommendations.");
       console.error("Error fetching recommendations:", error);
-    } 
+    }
   };
 
-// console.log(recommendations, _id);
-useEffect(() => {
+  // console.log(recommendations, _id);
+  useEffect(() => {
     if (id) {
       getSingleData();
     } else {
       console.error("Invalid query ID");
     }
   }, [id]);
-  
+
   const getSingleData = async () => {
     try {
       const { data } = await axiosSecure.get(`/query/${id}`);
@@ -73,7 +90,6 @@ useEffect(() => {
       console.error("Error fetching query data:", error);
     }
   };
-  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -83,11 +99,10 @@ useEffect(() => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (email === user?.email) {
-        toast.error("You cannot recommend this product to yourself.");
-        return; // Exit early to prevent the recommendation submission
-      }
-    
-  
+      toast.error("You cannot recommend this product to yourself.");
+      return; // Exit early to prevent the recommendation submission
+    }
+
     const newRecommendation = {
       queryId: _id,
       queryTitle,
@@ -96,22 +111,27 @@ useEffect(() => {
       UserName,
       recommenderEmail: user?.email,
       recommenderName: user?.displayName,
+      postedDate,
+      PostedTime,
       ...formData,
     };
     try {
-      const { data } = await axiosSecure.post(`/recommendation`, newRecommendation);
-  
+      const { data } = await axiosSecure.post(
+        `/recommendation`,
+        newRecommendation
+      );
+
       if (data?.insertedId) {
         toast.success("Recommendation added successfully");
-  
+
         await fetchAllRecommendations();
-        await getSingleData(); 
+        await getSingleData();
         setFormData({
-            recommendationTitle: "",
-            recommendedProductName: "",
-            recommendedProductImage: "",
-            recommendationReason: "",
-          })
+          recommendationTitle: "",
+          recommendedProductName: "",
+          recommendedProductImage: "",
+          recommendationReason: "",
+        });
       }
     } catch (error) {
       console.error("Error adding recommendation:", error);
@@ -119,9 +139,6 @@ useEffect(() => {
     }
   };
 
- 
-  
-  
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-2xl font-bold mb-4">Query Details</h1>
@@ -171,31 +188,38 @@ useEffect(() => {
         </div>
       </div>
 
-      <h3 className="text-xl font-semibold mb-2">All Recommendations</h3>
+      <h3 className="text-xl font-semibold mb-2">All Recommendations ({recommendations.length? recommendations.length: '0'})</h3>
       <div className="space-y-4 mb-6">
-        {recommendations?.map((rec) => (
+      {recommendations.length > 0 ? (
+      <div>
+         {recommendations?.map((rec) => (
           <div key={rec._id} className="bg-white shadow-md p-4 rounded-md">
-            <h4 className="text-lg font-semibold">{rec.recommendationTitle}</h4>
+            <h4 className="text-lg font-semibold">{rec?.recommendationTitle}</h4>
             <img
-              src={rec.recommendedProductImage}
-              alt={rec.recommendedProductName}
+              src={rec?.recommendedProductImage}
+              alt={rec?.recommendedProductName}
               className="w-32 h-32 object-cover rounded-md my-2"
             />
             <p className="text-sm">
-              <strong>Product:</strong> {rec.recommendedProductName}
+              <strong>Product:</strong> {rec?.recommendedProductName}
             </p>
             <p className="text-sm">
-              <strong>Reason:</strong> {rec.recommendationReason}
+              <strong>Reason:</strong> {rec?.recommendationReason}
             </p>
             <p className="text-sm">
-              <strong>By:</strong> {rec.recommenderName} ({rec.recommenderEmail}
+              <strong>By:</strong> {rec?.recommenderName} ({rec?.recommenderEmail}
               )
             </p>
             <p className="text-sm">
-              <strong>On:</strong> {new Date(rec.createdAt).toLocaleString()}
+              <strong>On:</strong> {rec?.postedDate} {rec?.PostedTime}
             </p>
           </div>
         ))}
+      </div>
+    ) : (
+      <p>No recommendations found.</p>
+    )}
+       
       </div>
 
       <form onSubmit={handleSubmit} className="bg-gray-100 p-6 rounded-md">
