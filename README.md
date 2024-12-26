@@ -4,7 +4,7 @@ RecoSphere is a Product Recommendation platform where users can add, view, updat
 
 ## Live URL
 
-[RecoSphere Live](YOUR_LIVE_URL_HERE)
+[RecoSphere Live](https://assignment-11-41308.web.app)
 
 ## Purpose
 
@@ -25,7 +25,7 @@ RecoSphere aims to provide a seamless experience for users to explore and share 
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 - **Authentication**: JWT (JSON Web Token) for secure user authentication
-- **Hosting**: [Netlify](https://www.netlify.com/), [Vercel](https://vercel.com/), or [Surge](https://surge.sh/)
+- **Hosting**: [Firebase](https://www.Firebase.com), [Vercel](https://vercel.com),
 
 ## NPM Packages Used
 
