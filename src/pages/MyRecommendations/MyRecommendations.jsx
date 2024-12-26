@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { axiosSecure } from "../../hooks/useAxiosSecure";
 import AuthContext from "../../provider/AuthContext";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyRecommendations = () => {
   const [recommendations, setRecommendations] = useState([]);
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -12,7 +13,7 @@ const MyRecommendations = () => {
   }, []);
 
   const fetchAllRecommendations = async () => {
-    axiosSecure.get(`/recommendation/${user?.email}`)
+    axiosSecure.get(`/recommendation/${user?.email}`, {withCredentials:true})
     .then((response) => {
         console.log(response.data);
       setRecommendations(response.data);
@@ -31,7 +32,7 @@ const MyRecommendations = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure
-          .delete(`/recommendation/${id}`)
+          .delete(`/recommendation/${id}`, {withCredentials:true})
 
           // .then((response) => console.log(response))
           .then(() => {
@@ -47,9 +48,11 @@ const MyRecommendations = () => {
   };
 console.log(recommendations);
   return (
-    <div className="py-12">
+    <div className="py-12 px-4">
       My Recommendations ({recommendations ? recommendations.length : 0})
       <div className="overflow-x-auto">
+      <div data-aos="zoom-in" data-aos-duration="1500">
+
         <table className="table">
           {/* head */}
           <thead>
@@ -84,6 +87,7 @@ console.log(recommendations);
             })}
           </tbody>
         </table>
+</div>
       </div>
     </div>
   );

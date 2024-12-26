@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import AuthContext from "../provider/AuthContext";
 
 export const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: 'https://assignment-11-server-gules-three.vercel.app',
+// baseURL: 'http://localhost:5000',
   withCredentials: true,
 });
 
@@ -14,18 +15,26 @@ const useAxiosSecure=()=>{
     useEffect(()=>{
         axiosSecure.interceptors.response.use(
             res=>{
-                return res
+                return res;
             },
-            async error=>{
+           error=>{
                 console.log('error from useAxiosSecure', error);
                 if(error.response.status === 401 || error.response.status === 403){
                     // logout
                     signOutUser()
-                    // navigate to login page
+                    .then(res=>{
+                        console.log('logout', res)
+                        // navigate to login page
                     navigate('/login')
+                    })
+                    .catch(err=>{
+                        console.log('error', err)
+                    })
+                    
                 }
+                return Promise.reject(error);
             });
-    },[logOut, navigate])
+    },[signOutUser, navigate])
     return axiosSecure;
 }
 

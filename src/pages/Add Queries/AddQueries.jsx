@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import AuthContext from "../../provider/AuthContext";
-import { axiosSecure } from "../../hooks/useAxiosSecure";
+// import { axiosSecure } from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AddQueries = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const [count, setCount] = useState(0);
   const [formData, setFormData] = useState({
@@ -78,6 +80,8 @@ const AddQueries = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg my-10">
+       <div data-aos="zoom-in" data-aos-duration="1500">
+
       <h2 className="text-2xl font-bold mb-6">Add Your Product Query</h2>
       <form onSubmit={handleSubmit}>
         <div className="space-y-4">
@@ -187,6 +191,7 @@ const AddQueries = () => {
           </div>
         </div>
       </form>
+</div>
     </div>
   );
 };

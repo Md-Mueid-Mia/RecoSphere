@@ -8,6 +8,10 @@ const ContactForm = () => {
     <div className="flex flex-col md:flex-row p-8 md:p-16">
       {/* Left Section */}
       <div className="bg-blue-700 text-white p-4 md:p-8 md:w-1/2 rounded-lg ">
+      <div data-aos="fade-right"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine">
+            
         <h2 className=" text-2xl md:text-3xl lg:text-5xl font-bold mb-4 md:mb-8 mt-4 flex gap-3"><RiMessage2Line /> Let's talk</h2>
         <div className="my-4 md:mb-6 md:pt-8">
           <div className="flex items-center ">
@@ -39,10 +43,15 @@ const ContactForm = () => {
             </p>
           </div>
         </div>
+            </div>
       </div>
 
       {/* Right Section */}
       <div className="md:w-1/2 bg-gray-100 p-8 rounded-lg mt-8 md:mt-0 md:ml-8">
+      <div data-aos="fade-left"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine">
+            
         <form>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
@@ -103,6 +112,7 @@ const ContactForm = () => {
             Submit
           </button>
         </form>
+            </div>
       </div>
     </div>
   );

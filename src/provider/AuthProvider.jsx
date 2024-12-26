@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import auth from '../firebase/firebase.config';
 import AuthContext from './AuthContext';
+import { axiosSecure } from '../hooks/useAxiosSecure';
 
 const googleProvider = new GoogleAuthProvider;
 const AuthProvider = ({children}) => {
@@ -38,7 +39,26 @@ const AuthProvider = ({children}) => {
       const unsubscribe =  onAuthStateChanged(auth, currentUser =>{
             setUser(currentUser)
             console.log('state captured', currentUser);
-            setLoading(false);
+
+            if(currentUser?.email){
+                console.log('User Logged in');
+                const user= {email: currentUser?.email}
+                axiosSecure.post('/jwt', user, {withCredentials: true})
+                .then(res=>{
+                    console.log('login ',res.data)
+                    setLoading(false);
+                })
+            }
+            else{
+                axiosSecure.post('/logout', {}, {
+                    withCredentials: true,
+                })
+                .then(res=>{
+                    console.log('logout', res.data)
+                    setLoading(false);
+                })
+            }
+            
         })
         return ()=>{
             unsubscribe();

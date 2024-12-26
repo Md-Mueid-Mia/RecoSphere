@@ -7,14 +7,18 @@ const Footer = () => {
     <div>
       <footer className="footer bg-base-200 text-base-content p-10 pb-0">
         <aside>
-          <img src="https://i.ibb.co.com/r08sLfd/Reco-Sphere.png" alt="" />
-          <p>
-            RecoSphere
-            <br />
-            Providing Product Recommendations since 1992
-          </p>
+          <div data-aos="zoom-in" data-aos-duration="1500">
+            <img src="https://i.ibb.co.com/r08sLfd/Reco-Sphere.png" alt="" />
+            <p>
+              RecoSphere
+              <br />
+              Providing Product Recommendations since 1992
+            </p>
+          </div>
         </aside>
+       
         <nav>
+        
           <h6 className="footer-title">Services</h6>
           <a className="link link-hover">Branding</a>
           <a className="link link-hover">Design</a>
@@ -39,10 +43,14 @@ const Footer = () => {
         <p className="p-4">© 2024 RecoSphere. All rights reserved.</p>
         <div className="space-x-4 pt-3">
           <button>
-            <a href="https://www.facebook.com"><FaFacebook className="text-2xl"/></a>
+            <a href="https://www.facebook.com">
+              <FaFacebook className="text-2xl" />
+            </a>
           </button>
           <button>
-            <a href="https://github.com/"><BsGithub className="text-2xl"/></a>
+            <a href="https://github.com/">
+              <BsGithub className="text-2xl" />
+            </a>
           </button>
         </div>
       </div>

@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../provider/AuthContext";
-import { axiosSecure } from "../../hooks/useAxiosSecure";
 import RecentQueriesCard from "../RecentQueriesCard";
 import { FaExclamationTriangle } from "react-icons/fa";
 import MyQueriesCard from "./MyQueriesCard";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyQueries = () => {
+  const axiosSecure = useAxiosSecure();
   const [queries, setQueries] = useState([]);
   const { user } = useContext(AuthContext);
 
@@ -22,11 +23,8 @@ const MyQueries = () => {
         console.log(response);
         setQueries(response?.data);
       })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
   };
-  console.log(queries);
+  // console.log(queries);
 
 
   const deleteProduct = (id) => {
@@ -69,11 +67,14 @@ const MyQueries = () => {
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-neutral-content text-center">
           <div className="max-w-md">
+          <div data-aos="zoom-in" data-aos-duration="1500">
+
             <h1 className="mb-3 text-2xl md:text-4xl font-bold">Hello there</h1>
             <p className="mb-3">Looking for Alternatives? Submit Your Query!</p>
             <button className="btn btn-primary">
               <Link to="/add-queries">Add Queries</Link>
             </button>
+</div>
           </div>
         </div>
       </div>
@@ -100,7 +101,7 @@ const MyQueries = () => {
                 Oops! The page data doesn’t exist.
               </p>
               <Link
-                to="/src/routes/router.jsx"
+                to="/add-queries"
                 className="btn btn-primary px-6 py-2 rounded-lg shadow-md"
               >
                 Go Back Add Query

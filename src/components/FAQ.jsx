@@ -20,10 +20,10 @@ const FAQ = () => {
         "Yes, you can update or delete any of your queries. Go to the 'My Queries' section, select the query you want to edit or delete, and follow the instructions provided.",
     },
     {
-        question: "How can I view recommendations for products?",
-        answer:
-          "Visit the 'Queries' section to view alternative recommendations for various products. Click on any query to explore the details and see user-submitted recommendations.",
-      },
+      question: "How can I view recommendations for products?",
+      answer:
+        "Visit the 'Queries' section to view alternative recommendations for various products. Click on any query to explore the details and see user-submitted recommendations.",
+    },
   ];
 
   const toggleAccordion = (index) => {
@@ -35,29 +35,30 @@ const FAQ = () => {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row">
         {/* FAQ Section */}
         <div className="flex-1">
-          <h1 className="text-4xl font-bold mb-4">FAQ</h1>
+          <div data-aos="zoom-in" data-aos-duration="1500">
+            <h1 className="text-4xl font-bold mb-4">FAQ</h1>
+          </div>
+          <div data-aos="zoom-in" data-aos-duration="1500" d data-aos-delay="300">
+            
           <p className="text-gray-600 mb-6">
             Got questions? We’ve got answers. Explore the frequently asked
             questions below.
           </p>
+          </div>
           {faqData.map((item, index) => (
-            <div
-              key={index}
-              className="border-b border-gray-300 mb-4"
-            >
+            <div key={index} className="border-b border-gray-300 mb-4">
+              <div data-aos="zoom-in" data-aos-duration="1500" d data-aos-delay="400">
+            
               <button
                 onClick={() => toggleAccordion(index)}
                 className="w-full flex justify-between items-center py-4 text-left font-semibold text-lg focus:outline-none"
               >
                 {item.question}
-                <span>
-                  {activeIndex === index ? "▲" : "▼"}
-                </span>
+                <span>{activeIndex === index ? "▲" : "▼"}</span>
               </button>
+            </div>
               {activeIndex === index && (
-                <div className="p-4 text-gray-600">
-                  {item.answer}
-                </div>
+                <div className="p-4 text-gray-600">{item.answer}</div>
               )}
             </div>
           ))}
@@ -65,11 +66,14 @@ const FAQ = () => {
 
         {/* Image Section */}
         <div className="flex-1 flex items-center justify-center mt-8 md:mt-0">
+        <div data-aos="zoom-in" data-aos-duration="1500" d data-aos-delay="500">
+            
           <img
             src="https://i.ibb.co.com/3yBYWPm/happy-young-man-using-laptop-computer-removebg-preview.png"
             alt="FAQ illustration"
             className="rounded-md "
           />
+            </div>
         </div>
       </div>
     </div>

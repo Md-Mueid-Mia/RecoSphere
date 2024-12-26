@@ -144,7 +144,10 @@ const QueryDetails = ({ queryId, currentUser }) => {
       <h1 className="text-2xl font-bold mb-4">Query Details</h1>
 
       <div className="hero bg-base-200 py-8 md:py-16">
+      <div data-aos="zoom-in" data-aos-duration="1500">
+
         <div className="hero-content flex-col lg:flex-row items-center gap-12">
+          
           <img
             referrerPolicy="no-referrer"
             src={productImageUrl}
@@ -186,9 +189,10 @@ const QueryDetails = ({ queryId, currentUser }) => {
             </div>
           </div>
         </div>
+</div>
       </div>
 
-      <h3 className="text-xl font-semibold mb-2">All Recommendations ({recommendations.length? recommendations.length: '0'})</h3>
+      <h3 className="text-xl font-semibold my-4">All Recommendations ({recommendations.length? recommendations.length: '0'})</h3>
       <div className="space-y-4 mb-6">
       {recommendations.length > 0 ? (
       <div>
@@ -221,9 +225,10 @@ const QueryDetails = ({ queryId, currentUser }) => {
     )}
        
       </div>
+      <hr className="my-6" /> <div data-aos="zoom-in" data-aos-duration="1500">
 
       <form onSubmit={handleSubmit} className="bg-gray-100 p-6 rounded-md">
-        <h3 className="text-xl font-semibold mb-4">Add a Recommendation</h3>
+        <h3 className="text-xl font-semibold mb-4 ">Add a Recommendation</h3>
         <div className="mb-4">
           <label
             htmlFor="recommendationTitle"
@@ -302,6 +307,7 @@ const QueryDetails = ({ queryId, currentUser }) => {
           Add Recommendation
         </button>
       </form>
+</div>
     </div>
   );
 };
