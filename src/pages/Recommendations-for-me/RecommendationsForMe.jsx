@@ -19,13 +19,13 @@ const RecommendationsForMe = () => {
       const response = await axiosSecure.get(
         `/recommendationForMe/${user?.email}`
       );
-      console.log(response);
+      // console.log(response);
       setRecommendations(response?.data);
     } catch (error) {
       console.error("Error fetching recommendations:", error.message);
     }
   };
-  console.log(recommendations);
+  // console.log(recommendations);
 
   return (
     <div className="p-5">

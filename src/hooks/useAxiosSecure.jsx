@@ -5,8 +5,8 @@ import AuthContext from "../provider/AuthContext";
 import toast from "react-hot-toast";
 
 export const axiosSecure = axios.create({
-//   baseURL: 'https://assignment-11-server-gules-three.vercel.app',
-baseURL: 'http://localhost:5000',
+  baseURL: 'https://assignment-11-server-gules-three.vercel.app',
+// baseURL: 'http://localhost:5000',
   withCredentials: true,
 });
 

@@ -46,7 +46,7 @@ const MyRecommendations = () => {
       }
     });
   };
-console.log(recommendations);
+// console.log(recommendations);
   return (
     <div className="py-12 px-4">
       My Recommendations ({recommendations ? recommendations.length : 0})
