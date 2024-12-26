@@ -83,7 +83,7 @@ const UpdateQuery = () => {
         postTime,
       };
     
-    console.log("Query Submitted:", formData);
+    // console.log("Query Submitted:", formData);
     // Reset form
      axiosSecure.put(`/updateQuery/${id}`, formData)
     .then((data) => {

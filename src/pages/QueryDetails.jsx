@@ -64,7 +64,7 @@ const QueryDetails = ({ queryId, currentUser }) => {
       if (data && data.length > 0) {
         setRecommendations(data); // Update recommendations state
       } else {
-        console.log("No recommendations found.");
+        // console.log("No recommendations found.");
         setRecommendations([]); // Handle empty state if needed
       }
     } catch (error) {

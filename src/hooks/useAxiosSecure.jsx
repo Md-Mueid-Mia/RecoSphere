@@ -5,8 +5,8 @@ import AuthContext from "../provider/AuthContext";
 import toast from "react-hot-toast";
 
 export const axiosSecure = axios.create({
-  baseURL: 'https://assignment-11-server-gules-three.vercel.app',
-// baseURL: 'http://localhost:5000',
+//   baseURL: 'https://assignment-11-server-gules-three.vercel.app',
+baseURL: 'http://localhost:5000',
   withCredentials: true,
 });
 
@@ -19,19 +19,17 @@ const useAxiosSecure=()=>{
                 return res;
             },
            error=>{
-                console.log('error from useAxiosSecure', error);
+                // console.log('error from useAxiosSecure', error);
                 if(error.response.status === 401 || error.response.status === 403){
                     // logout
                     signOutUser()
                     .then(res=>{
-                        console.log('logout', res)
-                        // navigate to login page
                         // be careful you are not authorized to access this page
                         toast.error('You are not authorized to access this page. Please login first.')
                     navigate('/login')
                     })
                     .catch(err=>{
-                        console.log('error', err)
+                        // console.log('error', err)
                     })
                     
                 }

@@ -33,7 +33,7 @@ const Queries = () => {
     // Function to handle grid layout change
     const handleLayoutChange = (layout) => {
         setGridLayout(layout);
-        console.log(layout);
+        // console.log(layout);
     };
 
     return (
