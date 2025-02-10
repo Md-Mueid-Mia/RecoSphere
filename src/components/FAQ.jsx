@@ -1,29 +1,38 @@
 import React, { useState } from "react";
+import { useTheme } from "../provider/ThemeProvider";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiPlus, FiMinus } from "react-icons/fi";
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+  const { theme } = useTheme();
 
   const faqData = [
     {
-      question: "What is this platform about?",
-      answer:
-        "This platform is a Product Recommendation System designed to help users find alternatives to various products. Users can create queries, explore recommendations, and contribute their own recommendations for products.",
+      question: "What makes our recommendation system unique?",
+      answer: "Our platform uses advanced AI algorithms to provide personalized product recommendations based on user preferences, usage patterns, and community feedback. We focus on quality over quantity, ensuring each recommendation is valuable.",
+      icon: "🎯"
     },
     {
-      question: "How can I add a query about a product?",
-      answer:
-        "To add a query, log in to your account and navigate to the 'Add Queries' section. Fill out the form with the product details and submit it. Your query will be available for others to view and respond to.",
+      question: "How reliable are the product recommendations?",
+      answer: "All recommendations are verified by our community of experts and real users. We maintain strict quality control and authenticity checks to ensure reliable suggestions.",
+      icon: "⭐"
     },
     {
-      question: "Can I update or delete my queries?",
-      answer:
-        "Yes, you can update or delete any of your queries. Go to the 'My Queries' section, select the query you want to edit or delete, and follow the instructions provided.",
+      question: "Can I become a product recommender?",
+      answer: "Yes! After creating an account and building your profile, you can start contributing recommendations. Higher engagement and quality contributions earn you expert status.",
+      icon: "👥"
     },
     {
-      question: "How can I view recommendations for products?",
-      answer:
-        "Visit the 'Queries' section to view alternative recommendations for various products. Click on any query to explore the details and see user-submitted recommendations.",
+      question: "How do you ensure recommendation quality?",
+      answer: "We use a combination of AI verification, community voting, and expert reviews to maintain high-quality recommendations. Our system also tracks user satisfaction rates.",
+      icon: "✅"
     },
+    {
+      question: "What's the process for disputing recommendations?",
+      answer: "Users can report incorrect or misleading recommendations through our dispute resolution system. Our team reviews these cases within 24 hours.",
+      icon: "⚖️"
+    }
   ];
 
   const toggleAccordion = (index) => {
@@ -31,49 +40,71 @@ const FAQ = () => {
   };
 
   return (
-    <div className=" bg-gray-100 p-8">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row">
-        {/* FAQ Section */}
-        <div className="flex-1">
-          <div data-aos="zoom-in" data-aos-duration="1500">
-            <h1 className="text-4xl font-bold mb-4">FAQ</h1>
-          </div>
-          <div data-aos="zoom-in" data-aos-duration="1500" d data-aos-delay="300">
-            
-          <p className="text-gray-600 mb-6">
-            Got questions? We’ve got answers. Explore the frequently asked
-            questions below.
-          </p>
-          </div>
-          {faqData.map((item, index) => (
-            <div key={index} className="border-b border-gray-300 mb-4">
-              <div data-aos="zoom-in" data-aos-duration="1500" d data-aos-delay="400">
-            
+    <div className={`
+       py-10 px-4 md:px-0
+      ${theme === 'dark' ? 'bg-gray-900' : ''}
+      transition-colors duration-300
+    `}>
+      <div className="max-w-4xl mx-auto">
+        <h2 className={`
+          text-3xl md:text-4xl font-bold text-center mb-12
+          ${theme === 'dark' ? 'text-white' : 'text-gray-900'}
+        `}>
+          Frequently Asked Questions
+        </h2>
+
+        <div className="space-y-4">
+          {faqData.map((faq, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className={`
+                rounded-xl overflow-hidden
+                ${theme === 'dark' 
+                  ? 'bg-gray-800 hover:bg-gray-700' 
+                  : 'bg-white hover:bg-gray-50'}
+                transition-all duration-300
+                shadow-lg hover:shadow-xl
+              `}
+            >
               <button
                 onClick={() => toggleAccordion(index)}
-                className="w-full flex justify-between items-center py-4 text-left font-semibold text-lg focus:outline-none"
+                className={`
+                  w-full p-6 text-left flex items-center justify-between
+                  ${theme === 'dark' ? 'text-white' : 'text-gray-900'}
+                `}
               >
-                {item.question}
-                <span>{activeIndex === index ? "▲" : "▼"}</span>
+                <div className="flex items-center gap-4">
+                  <span className="text-2xl">{faq.icon}</span>
+                  <span className="text-lg font-semibold">{faq.question}</span>
+                </div>
+                {activeIndex === index ? 
+                  <FiMinus className="flex-shrink-0 w-6 h-6" /> : 
+                  <FiPlus className="flex-shrink-0 w-6 h-6" />
+                }
               </button>
-            </div>
-              {activeIndex === index && (
-                <div className="p-4 text-gray-600">{item.answer}</div>
-              )}
-            </div>
-          ))}
-        </div>
 
-        {/* Image Section */}
-        <div className="flex-1 flex items-center justify-center mt-8 md:mt-0">
-        <div data-aos="zoom-in" data-aos-duration="1500" d data-aos-delay="500">
-            
-          <img
-            src="https://i.ibb.co.com/3yBYWPm/happy-young-man-using-laptop-computer-removebg-preview.png"
-            alt="FAQ illustration"
-            className="rounded-md "
-          />
-            </div>
+              <AnimatePresence>
+                {activeIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className={`
+                      px-6 pb-6 text-lg
+                      ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}
+                    `}>
+                      {faq.answer}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
         </div>
       </div>
     </div>
