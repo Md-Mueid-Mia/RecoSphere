@@ -3,7 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { axiosSecure } from "../hooks/useAxiosSecure";
 import AuthContext from "../provider/AuthContext";
 import toast from "react-hot-toast";
-
+import { motion } from "framer-motion";
+import { useTheme } from "../provider/ThemeProvider";
 const QueryDetails = ({ queryId, currentUser }) => {
   const { user } = useContext(AuthContext);
   const [recommendations, setRecommendations] = useState([]);
@@ -16,6 +17,7 @@ const QueryDetails = ({ queryId, currentUser }) => {
   const { id } = useParams();
   const [query, setQuery] = useState(null);
   const navigate = useNavigate();
+  const {theme} = useTheme();
   // console.log(id);
   const {
     UserName,
@@ -140,174 +142,243 @@ const QueryDetails = ({ queryId, currentUser }) => {
   };
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">Query Details</h1>
+    <div className={`min-h-screen pt-20 ${theme ? 'bg-gray-900' : 'bg-gray-50'} transition-colors duration-300`}>
+      <div className="container mx-auto px-4 py-8">
+        {/* Hero Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className={`rounded-2xl shadow-xl overflow-hidden mb-12 ${
+            theme ? 'bg-gray-800' : 'bg-white'
+          }`}
+        >
+          <div className="grid lg:grid-cols-2 gap-8 p-6">
+            {/* Product Image */}
+            <motion.div 
+              whileHover={{ scale: 1.02 }}
+              className="relative rounded-xl overflow-hidden"
+            >
+              <img
+                src={productImageUrl}
+                alt={productName}
+                className="w-full h-[400px] object-cover"
+              />
+              <div className={`absolute bottom-0 left-0 right-0 p-4 ${
+                theme ? 'bg-black/60' : 'bg-white/60'
+              } backdrop-blur-sm`}>
+                <h2 className={`text-2xl font-bold ${
+                  theme ? 'text-white' : 'text-gray-800'
+                }`}>{productName}</h2>
+              </div>
+            </motion.div>
 
-      <div className="hero bg-base-200 py-8 md:py-16">
-      <div data-aos="zoom-in" data-aos-duration="1500">
-
-        <div className="hero-content flex-col lg:flex-row items-center gap-12">
-          
-          <img
-            referrerPolicy="no-referrer"
-            src={productImageUrl}
-            alt={productName}
-            className="max-w-sm w-full rounded-lg shadow-xl object-cover"
-          />
-          <div className="flex flex-col space-y-6 w-full">
-            <h1 className="text-2xl md:text-4xl font-extrabold text-gray-800">
-              {productName}
-            </h1>
-            <p className="text-gray-600 text-lg md:text-xl">{queryTitle}</p>
-            <div className="text-gray-700 font-medium">
-              Recommendations:{" "}
-              <span className="text-blue-600">{recommendationCount}</span>
-            </div>
-            <div className="flex items-center gap-4 bg-white shadow-lg rounded-lg p-4">
-              {photo ? (
-                <img
-                  referrerPolicy="no-referrer"
-                  className="w-16 h-16 rounded-full shadow-md"
-                  src={photo}
-                  alt={UserName}
-                />
-              ) : (
-                <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center text-gray-500">
-                  N/A
-                </div>
-              )}
-              <div className="text-gray-700">
-                <div className="font-bold text-lg">{UserName}</div>
-                <div className="text-sm text-gray-500">{email}</div>
-                <div className="text-sm text-gray-500">
-                  {postDate} {postTime}
-                </div>
-                <div className="mt-1 text-sm text-gray-500">
-                  <strong>Brand:</strong> {productBrand}
+            {/* Product Info */}
+            <div className="space-y-6">
+              <div className={`p-6 rounded-xl ${
+                theme ? 'bg-gray-700' : 'bg-gray-100'
+              }`}>
+                <h3 className={`text-xl font-bold mb-4 ${
+                  theme ? 'text-white' : 'text-gray-800'
+                }`}>{queryTitle}</h3>
+                
+                {/* User Info Card */}
+                <div className={`flex items-center gap-4 p-4 rounded-lg ${
+                  theme ? 'bg-gray-800' : 'bg-white'
+                }`}>
+                  {photo ? (
+                    <img
+                      src={photo}
+                      alt={UserName}
+                      className="w-16 h-16 rounded-full ring-2 ring-blue-500"
+                    />
+                  ) : (
+                    <div className={`w-16 h-16 rounded-full flex items-center justify-center ${
+                      theme ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-600'
+                    }`}>
+                      {UserName?.[0] || 'N/A'}
+                    </div>
+                  )}
+                  <div>
+                    <div className={`font-bold ${
+                      theme ? 'text-white' : 'text-gray-800'
+                    }`}>{UserName}</div>
+                    <div className={`text-sm ${
+                      theme ? 'text-gray-400' : 'text-gray-500'
+                    }`}>{email}</div>
+                    <div className={`text-sm ${
+                      theme ? 'text-gray-400' : 'text-gray-500'
+                    }`}>
+                      {postDate} • {postTime}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-</div>
-      </div>
+        </motion.div>
 
-      <h3 className="text-xl font-semibold my-4">All Recommendations ({recommendations.length? recommendations.length: '0'})</h3>
-      <div className="space-y-4 mb-6">
-      {recommendations.length > 0 ? (
-      <div>
-         {recommendations?.map((rec) => (
-          <div key={rec._id} className="bg-white shadow-md p-4 rounded-md">
-            <h4 className="text-lg font-semibold">{rec?.recommendationTitle}</h4>
-            <img
-              src={rec?.recommendedProductImage}
-              alt={rec?.recommendedProductName}
-              className="w-32 h-32 object-cover rounded-md my-2"
-            />
-            <p className="text-sm">
-              <strong>Product:</strong> {rec?.recommendedProductName}
-            </p>
-            <p className="text-sm">
-              <strong>Reason:</strong> {rec?.recommendationReason}
-            </p>
-            <p className="text-sm">
-              <strong>By:</strong> {rec?.recommenderName} ({rec?.recommenderEmail}
-              )
-            </p>
-            <p className="text-sm">
-              <strong>On:</strong> {rec?.postedDate} {rec?.PostedTime}
-            </p>
+        {/* Recommendations Section */}
+        <div className="mb-12">
+          <h3 className={`text-2xl font-bold mb-6 ${
+            theme ? 'text-white' : 'text-gray-800'
+          }`}>
+            Recommendations ({recommendations.length || 0})
+          </h3>
+          
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {recommendations.length > 0 ? (
+              recommendations.map((rec) => (
+                <motion.div
+                  key={rec._id}
+                  whileHover={{ y: -5 }}
+                  className={`rounded-xl overflow-hidden ${
+                    theme ? 'bg-gray-800' : 'bg-white'
+                  } shadow-lg`}
+                >
+                  <img
+                    src={rec.recommendedProductImage}
+                    alt={rec.recommendedProductName}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-4 space-y-3">
+                    <h4 className={`text-lg font-semibold ${
+                      theme ? 'text-white' : 'text-gray-800'
+                    }`}>{rec.recommendationTitle}</h4>
+                    <p className={`text-sm ${
+                      theme ? 'text-gray-300' : 'text-gray-600'
+                    }`}>{rec.recommendationReason}</p>
+                    <div className={`text-xs ${
+                      theme ? 'text-gray-400' : 'text-gray-500'
+                    }`}>
+                      By {rec.recommenderName} • {rec.postedDate}
+                    </div>
+                  </div>
+                </motion.div>
+              ))
+            ) : (
+              <p className={`col-span-full text-center py-8 ${
+                theme ? 'text-gray-400' : 'text-gray-600'
+              }`}>
+                No recommendations yet. Be the first to recommend!
+              </p>
+            )}
           </div>
-        ))}
-      </div>
-    ) : (
-      <p>No recommendations found.</p>
-    )}
-       
-      </div>
-      <hr className="my-6" /> <div data-aos="zoom-in" data-aos-duration="1500">
-
-      <form onSubmit={handleSubmit} className="bg-gray-100 p-6 rounded-md">
-        <h3 className="text-xl font-semibold mb-4 ">Add a Recommendation</h3>
-        <div className="mb-4">
-          <label
-            htmlFor="recommendationTitle"
-            className="block text-sm font-medium mb-1"
-          >
-            Recommendation Title
-          </label>
-          <input
-            type="text"
-            name="recommendationTitle"
-            id="recommendationTitle"
-            value={formData.recommendationTitle}
-            onChange={handleInputChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            placeholder="Enter recommendation title"
-            required
-          />
         </div>
-        <div className="mb-4">
-          <label
-            htmlFor="recommendedProductName"
-            className="block text-sm font-medium mb-1"
-          >
-            Recommended Product Name
-          </label>
-          <input
-            type="text"
-            name="recommendedProductName"
-            id="recommendedProductName"
-            value={formData.recommendedProductName}
-            onChange={handleInputChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            placeholder="Enter product name"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="recommendedProductImage"
-            className="block text-sm font-medium mb-1"
-          >
-            Recommended Product Image URL
-          </label>
-          <input
-            type="url"
-            name="recommendedProductImage"
-            id="recommendedProductImage"
-            value={formData.recommendedProductImage}
-            onChange={handleInputChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            placeholder="Enter image URL"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="recommendationReason"
-            className="block text-sm font-medium mb-1"
-          >
-            Recommendation Reason
-          </label>
-          <textarea
-            name="recommendationReason"
-            id="recommendationReason"
-            value={formData.recommendationReason}
-            onChange={handleInputChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            placeholder="Why do you recommend this product?"
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+        
+        {/* Add Recommendation Form */}
+        <motion.form
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          onSubmit={handleSubmit}
+          className={`rounded-xl p-8 shadow-xl ${
+            theme ? 'bg-gray-800/50 backdrop-blur' : 'bg-white'
+          }`}
         >
-          Add Recommendation
-        </button>
-      </form>
-</div>
+          <h3 className={`text-3xl font-bold mb-8 ${
+            theme ? 'text-white' : 'text-gray-800'
+          }`}>Add a Recommendation</h3>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="space-y-6">
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${
+                  theme ? 'text-gray-300' : 'text-gray-700'
+                }`}>
+                  Recommendation Title
+                </label>
+                <input
+                  type="text"
+                  name="recommendationTitle"
+                  value={formData.recommendationTitle}
+                  onChange={handleInputChange}
+                  className={`w-full p-3 rounded-lg border-2 transition-all duration-300 ${
+                    theme 
+                      ? 'bg-gray-700/50 border-gray-600 text-white focus:border-blue-500' 
+                      : 'bg-gray-50 border-gray-200 focus:border-blue-500'
+                  }`}
+                  placeholder="Enter title"
+                  required
+                />
+              </div>
+        
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${
+                  theme ? 'text-gray-300' : 'text-gray-700'
+                }`}>
+                  Product Name
+                </label>
+                <input
+                  type="text"
+                  name="recommendedProductName"
+                  value={formData.recommendedProductName}
+                  onChange={handleInputChange}
+                  className={`w-full p-3 rounded-lg border-2 transition-all duration-300 ${
+                    theme 
+                      ? 'bg-gray-700/50 border-gray-600 text-white focus:border-blue-500' 
+                      : 'bg-gray-50 border-gray-200 focus:border-blue-500'
+                  }`}
+                  placeholder="Enter product name"
+                  required
+                />
+              </div>
+        
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${
+                  theme ? 'text-gray-300' : 'text-gray-700'
+                }`}>
+                  Product Image URL
+                </label>
+                <input
+                  type="url"
+                  name="recommendedProductImage"
+                  value={formData.recommendedProductImage}
+                  onChange={handleInputChange}
+                  className={`w-full p-3 rounded-lg border-2 transition-all duration-300 ${
+                    theme 
+                      ? 'bg-gray-700/50 border-gray-600 text-white focus:border-blue-500' 
+                      : 'bg-gray-50 border-gray-200 focus:border-blue-500'
+                  }`}
+                  placeholder="Enter image URL"
+                  required
+                />
+              </div>
+            </div>
+        
+            <div className="space-y-6">
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${
+                  theme ? 'text-gray-300' : 'text-gray-700'
+                }`}>
+                  Recommendation Reason
+                </label>
+                <textarea
+                  name="recommendationReason"
+                  value={formData.recommendationReason}
+                  onChange={handleInputChange}
+                  className={`w-full p-3 rounded-lg border-2 transition-all duration-300 min-h-[200px] ${
+                    theme 
+                      ? 'bg-gray-700/50 border-gray-600 text-white focus:border-blue-500' 
+                      : 'bg-gray-50 border-gray-200 focus:border-blue-500'
+                  }`}
+                  placeholder="Why do you recommend this product?"
+                  required
+                />
+              </div>
+        
+              <button
+                type="submit"
+                className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${
+                  theme
+                    ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                    : 'bg-blue-500 hover:bg-blue-600 text-white'
+                } transform hover:scale-[1.02]`}
+              >
+                Submit Recommendation
+              </button>
+            </div>
+          </div>
+        </motion.form>
+      </div>
     </div>
   );
 };

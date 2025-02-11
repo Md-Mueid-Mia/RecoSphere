@@ -46,7 +46,7 @@ const Services = () => {
   ];
 
   return (
-    <div className={`
+    <div id='services' className={`
       min-h-screen py-10 px-4 md:px-0
       ${theme === 'dark' ? 'bg-gray-900' : ''}
       transition-all duration-300
