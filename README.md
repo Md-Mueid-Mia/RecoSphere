@@ -21,6 +21,15 @@ RecoSphere aims to provide a seamless experience for users to explore and share 
 - **Private Routes**: Some routes are restricted to authenticated users only.
 - **Responsive Design**: The website is fully responsive, designed to work across mobile, tablet, and desktop devices.
 - **Search Functionality**: Users can search for queries based on product names.
+- **Theme Toggle**: Switch between light and dark modes for comfortable viewing in any environment.
+
+## Theme Settings
+
+RecoSphere offers a seamless theme switching experience:
+- **Light Mode**: Classic, clean interface for daytime viewing
+- **Dark Mode**: Eye-friendly dark theme for low-light environments
+- **Persistent Theme**: User theme preference is saved locally
+- **System Theme Support**: Automatically matches system preferences
 
 ## Technology Stack
 
