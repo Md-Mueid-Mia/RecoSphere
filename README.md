@@ -2,6 +2,9 @@
 
 RecoSphere is a Product Recommendation platform where users can add, view, update, delete queries, and recommend products based on their experiences. It allows users to interact with product recommendations and participate in discussions about product alternatives.
 
+## Application Preview
+
+![RecoSphere Screenshot](https://i.ibb.co.com/cXJTq1LQ/Reco-Sphere.png)
 ## Live URL
 
 [RecoSphere Live](https://assignment-11-41308.web.app)
