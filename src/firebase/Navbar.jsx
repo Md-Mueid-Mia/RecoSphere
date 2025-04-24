@@ -54,11 +54,7 @@ const darkColors = {
   textLight: "text-gray-300" // Secondary text
 }
   return (
-//     <div className={`
-//   fixed w-full z-20 top-0 start-0
-//   ${theme === 'dark' ? darkColors.primary : lightColors.primary}
-//   shadow-lg backdrop-blur-sm bg-opacity-90
-// `}>
+
 <nav className={`
   fixed w-full z-20 top-0 start-0
   ${theme === 'dark' ? darkColors.primary : lightColors.primary}
@@ -197,7 +193,7 @@ Services
               onClick={toggleTheme}
               className="btn btn-ghost btn-circle text-white"
             >
-              {theme === 'dark' ? <FaSun className="text-xl"/> : <MdDarkMode className="text-xl"/>}
+              {theme === 'dark' ? <FaSun className="text-2xl"/> : <MdDarkMode className="text-2xl"/>}
             </button>
 
             {/* User Menu */}
@@ -205,7 +201,7 @@ Services
               <div className="dropdown dropdown-end">
                 <div tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
-                    <img src={user.photoURL} alt={user.displayName} />
+                    <img referrerPolicy="no-referrer" src={user?.photoURL} alt="user photo" />
                   </div>
                 </div>
                 <ul className={`mt-3 p-2 shadow menu menu-compact dropdown-content rounded-box w-52 ${
