@@ -1,54 +1,121 @@
-# RecoSphere
+# 🚀 RecoSphere
 
-RecoSphere is a Product Recommendation platform where users can add, view, update, delete queries, and recommend products based on their experiences. It allows users to interact with product recommendations and participate in discussions about product alternatives.
+RecoSphere is a **Product Recommendation** platform where users can add, view, update, delete queries, and recommend products based on their experiences. It enables users to interact with recommendations and discuss product alternatives.
 
-## Application Preview
+---
+
+## 🎨 Application Preview
 
 ![RecoSphere Screenshot](https://i.ibb.co.com/cXJTq1LQ/Reco-Sphere.png)
-## Live URL
 
-[RecoSphere Live](https://assignment-11-41308.web.app)
+---
 
-## Purpose
+## 🌐 Live Demo
 
-RecoSphere aims to provide a seamless experience for users to explore and share product recommendations. It offers features like querying products, adding recommendations, and interacting with other users' suggestions.
+🔗 [**RecoSphere Live**](https://assignment-11-41308.web.app)
 
-## Key Features
+---
 
-- **User Authentication**: Login and registration with email/password or Google Sign-in.
-- **Query Management**: Users can add, update, and delete their product queries.
-- **Recommendations**: Users can add product recommendations for queries and interact with recommendations from others.
-- **Private Routes**: Some routes are restricted to authenticated users only.
-- **Responsive Design**: The website is fully responsive, designed to work across mobile, tablet, and desktop devices.
-- **Search Functionality**: Users can search for queries based on product names.
-- **Theme Toggle**: Switch between light and dark modes for comfortable viewing in any environment.
+## 🎯 Purpose
 
-## Theme Settings
+RecoSphere aims to provide a seamless experience for users to explore and share product recommendations. It includes features like:
+- Querying products
+- Adding recommendations
+- Interacting with other users' suggestions
 
-RecoSphere offers a seamless theme switching experience:
-- **Light Mode**: Classic, clean interface for daytime viewing
-- **Dark Mode**: Eye-friendly dark theme for low-light environments
-- **Persistent Theme**: User theme preference is saved locally
-- **System Theme Support**: Automatically matches system preferences
+---
 
-## Technology Stack
+## 🔑 Key Features
 
-- **Frontend**: React, Redux (if applicable), React Router, CSS, HTML
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB
-- **Authentication**: JWT (JSON Web Token) for secure user authentication
-- **Hosting**: [Firebase](https://www.Firebase.com), [Vercel](https://vercel.com),
+✅ **User Authentication** – Secure login & registration (Email/Google Sign-in)
+✅ **Query Management** – Create, update, and delete product queries
+✅ **Recommendations** – Add recommendations and interact with others’ suggestions
+✅ **Private Routes** – Restrict access to authenticated users only
+✅ **Responsive Design** – Optimized for mobile, tablet, and desktop
+✅ **Search Functionality** – Find queries by product names
+✅ **Theme Toggle** – Switch between **Light** and **Dark** modes
 
-## NPM Packages Used
+---
 
-- `express`: Framework for building the backend API
-- `mongodb`: MongoDB database client
-- `jsonwebtoken`: Used for handling JWT authentication
-- `cookie-parser`: Middleware for cookie handling
-- `dotenv`: Loads environment variables
-- `cors`: Middleware for handling CORS (Cross-Origin Resource Sharing)
-- `react-router-dom`: For navigation in React
-- `firebase`: For user authentication (if applicable)
-- `react-slick`: For implementing the product slider
-- Additional npm packages can be added as per project requirements.
+## 🎨 Theme Settings
+
+RecoSphere offers a smooth and customizable theme-switching experience:
+
+🌞 **Light Mode** – Classic, clean interface for daytime viewing  
+🌙 **Dark Mode** – Eye-friendly dark theme for low-light environments  
+💾 **Persistent Theme** – User preferences are saved locally  
+🖥️ **System Theme Support** – Automatically matches system preferences  
+
+---
+
+## 🛠️ Technology Stack
+
+### Frontend:
+- **React** – UI development
+- **React Router** – Navigation
+- **Tailwind CSS** / **CSS** – Styling
+- **Framer Motion** – Animations
+
+### Backend:
+- **Node.js** – Server-side runtime
+- **Express.js** – Backend framework
+- **MongoDB** – NoSQL database
+- **JWT** – Secure authentication
+- **Firebase** – User authentication & hosting
+- **Vercel** – Deployment
+
+---
+
+## 📦 NPM Packages Used
+
+```json
+{
+  "@headlessui/react": "^2.2.0",
+  "@react-spring/three": "^9.7.5",
+  "aos": "^2.3.4",
+  "axios": "^1.7.9",
+  "dotenv": "^16.4.7",
+  "firebase": "^11.1.0",
+  "flowbite": "^2.5.2",
+  "framer-motion": "^12.4.2",
+  "localforage": "^1.10.0",
+  "match-sorter": "^8.0.0",
+  "react": "^18.3.1",
+  "react-dom": "^18.3.1",
+  "react-hot-toast": "^2.5.1",
+  "react-icon": "^1.0.0",
+  "react-icons": "^5.4.0",
+  "react-router-dom": "^7.1.0",
+  "react-tilt": "^1.0.2",
+  "sort-by": "^1.2.0",
+  "sweetalert2": "^11.16.0",
+  "swiper": "^11.1.15"
+}
+```
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License** – feel free to use and modify as needed!
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! If you’d like to improve RecoSphere:
+1. Fork the repository
+2. Create a new branch (`feature-branch`)
+3. Commit your changes
+4. Submit a pull request
+
+---
+
+## 📩 Contact
+
+For questions, reach out via email: **mdmueidmia@gmail.com**
+
+---
+
+Made with ❤️ by **RecoSphere Team** 🚀
 
