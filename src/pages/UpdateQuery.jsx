@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { useTheme } from "../provider/ThemeProvider";
 
 const UpdateQuery = () => {
   const axiosSecure = useAxiosSecure();
+   const { theme, toggleTheme } = useTheme();
   const { id } = useParams();
   const [query, setQuery] = useState(null);
   const navigate = useNavigate();
