@@ -215,7 +215,7 @@ const RecentQueriesCard = ({ query, index = 0 }) => {
               text-xl md:text-2xl font-bold line-clamp-2
               ${theme === 'dark' ? 'text-white' : 'text-gray-800'}
             `}>
-              {productName}
+              {productName.slice(0, 18)}{productName.length > 16 ? '...' : ''}
             </h3>
             <p className={`
               text-sm md:text-base font-medium
