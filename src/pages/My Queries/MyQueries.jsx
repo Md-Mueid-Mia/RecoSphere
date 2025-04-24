@@ -304,14 +304,17 @@ const MyQueries = () => {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-4">
                           <div>
-                            <label className="block text-sm font-medium mb-2 opacity-80">Product Name</label>
+                            <label className={`block  ${theme === 'dark' 
+                                  ? 'text-white' 
+                                  : ''
+                                } text-sm font-medium mb-2 opacity-80`}>Product Name</label>
                             <input
                               type="text"
                               value={editFormData.productName}
                               onChange={(e) => setEditFormData({...editFormData, productName: e.target.value})}
                               className={`w-full p-3 rounded-lg outline-none border 
                                 ${theme === 'dark' 
-                                  ? 'bg-gray-700/50 border-gray-600 focus:border-blue-500' 
+                                  ? ' border-gray-600 focus:border-blue-500' 
                                   : 'bg-white/50 border-gray-200 focus:border-blue-500'
                                 }
                                 transition-colors duration-200
@@ -321,14 +324,17 @@ const MyQueries = () => {
                           </div>
       
                           <div>
-                            <label className="block text-sm font-medium mb-2 opacity-80">Brand</label>
+                            <label className={`block  ${theme === 'dark' 
+                                  ? 'text-white' 
+                                  : ''
+                                } text-sm font-medium mb-2 opacity-80`}>Brand</label>
                             <input
                               type="text"
                               value={editFormData.productBrand}
                               onChange={(e) => setEditFormData({...editFormData, productBrand: e.target.value})}
                               className={`w-full p-3 rounded-lg outline-none border 
                                 ${theme === 'dark' 
-                                  ? 'bg-gray-700/50 border-gray-600 focus:border-blue-500' 
+                                  ? ' border-gray-600 focus:border-blue-500' 
                                   : 'bg-white/50 border-gray-200 focus:border-blue-500'
                                 }
                                 transition-colors duration-200
@@ -338,14 +344,17 @@ const MyQueries = () => {
                           </div>
       
                           <div>
-                            <label className="block text-sm font-medium mb-2 opacity-80">Image URL</label>
+                            <label className={`block  ${theme === 'dark' 
+                                  ? 'text-white' 
+                                  : ''
+                                } text-sm font-medium mb-2 opacity-80`}>Image URL</label>
                             <input
                               type="url"
                               value={editFormData.productImageUrl}
                               onChange={(e) => setEditFormData({...editFormData, productImageUrl: e.target.value})}
                               className={`w-full p-3 rounded-lg outline-none border 
                                 ${theme === 'dark' 
-                                  ? 'bg-gray-700/50 border-gray-600 focus:border-blue-500' 
+                                  ? ' border-gray-600 focus:border-blue-500' 
                                   : 'bg-white/50 border-gray-200 focus:border-blue-500'
                                 }
                                 transition-colors duration-200
@@ -357,14 +366,17 @@ const MyQueries = () => {
       
                         <div className="space-y-4">
                           <div>
-                            <label className="block text-sm font-medium mb-2 opacity-80">Query Title</label>
+                            <label className={`block  ${theme === 'dark' 
+                                  ? 'text-white' 
+                                  : ''
+                                } text-sm font-medium mb-2 opacity-80`}>Query Title</label>
                             <input
                               type="text"
                               value={editFormData.queryTitle}
                               onChange={(e) => setEditFormData({...editFormData, queryTitle: e.target.value})}
                               className={`w-full p-3 rounded-lg outline-none border 
                                 ${theme === 'dark' 
-                                  ? 'bg-gray-700/50 border-gray-600 focus:border-blue-500' 
+                                  ? ' border-gray-600 focus:border-blue-500' 
                                   : 'bg-white/50 border-gray-200 focus:border-blue-500'
                                 }
                                 transition-colors duration-200
@@ -374,14 +386,17 @@ const MyQueries = () => {
                           </div>
       
                           <div>
-                            <label className="block text-sm font-medium mb-2 opacity-80">Reason</label>
+                            <label className={`block  ${theme === 'dark' 
+                                  ? 'text-white' 
+                                  : ''
+                                } text-sm font-medium mb-2 opacity-80`}>Reason</label>
                             <textarea
                               value={editFormData.boycottReason}
                               onChange={(e) => setEditFormData({...editFormData, boycottReason: e.target.value})}
                               rows="5"
                               className={`w-full p-3 rounded-lg outline-none border 
                                 ${theme === 'dark' 
-                                  ? 'bg-gray-700/50 border-gray-600 focus:border-blue-500' 
+                                  ? ' border-gray-600 focus:border-blue-500' 
                                   : 'bg-white/50 border-gray-200 focus:border-blue-500'
                                 }
                                 transition-colors duration-200
@@ -398,7 +413,7 @@ const MyQueries = () => {
                           onClick={() => setIsEditModalOpen(false)}
                           className={`px-6 py-2.5 rounded-lg border
                             ${theme === 'dark'
-                              ? 'border-gray-600 hover:bg-gray-700'
+                              ? 'border-gray-600 hover:bg-gray-700 text-white'
                               : 'border-gray-200 hover:bg-gray-100'
                             }
                             transition-colors duration-200

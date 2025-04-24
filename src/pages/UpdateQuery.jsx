@@ -96,6 +96,27 @@ const UpdateQuery = () => {
     })
    
   };
+
+
+  // Light Mode Colors
+const lightColors = {
+  primary: "bg-gradient-to-r from-blue-600 to-indigo-800", // Main nav background
+  secondary: "bg-white",  // Content background
+  accent: "bg-blue-500", // Buttons/highlights
+  text: "text-gray-800", // Main text
+  textLight: "text-gray-600" // Secondary text
+}
+
+// Dark Mode Colors
+const darkColors = {
+  primary: "bg-gradient-to-r from-gray-900 to-slate-700", // Main nav background
+  secondary: "bg-gray-800", // Content background
+  accent: "bg-blue-500", // Buttons/highlights
+  text: "text-white", // Main text
+  textLight: "text-gray-300" // Secondary text
+}
+
+
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg my-10">
        <div data-aos="zoom-in" data-aos-duration="1500">
