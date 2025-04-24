@@ -1,10 +1,29 @@
 
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { NavLink } from "react-router-dom";
+import { useTheme } from '../provider/ThemeProvider';
 
 const Footer = () => {
+   const { theme, toggleTheme } = useTheme();
+  // Light Mode Colors
+const lightColors = {
+  primary: "bg-gradient-to-r from-blue-600 to-indigo-800", // Main nav background
+  secondary: "bg-white",  // Content background
+  accent: "bg-blue-500", // Buttons/highlights
+  text: "text-gray-800", // Main text
+  textLight: "text-gray-600" // Secondary text
+}
+
+// Dark Mode Colors
+const darkColors = {
+  primary: "bg-gradient-to-r from-gray-900 to-slate-700", // Main nav background
+  secondary: "bg-gray-800", // Content background
+  accent: "bg-blue-500", // Buttons/highlights
+  text: "text-white", // Main text
+  textLight: "text-gray-300" // Secondary text
+}
   return (
-    <footer className="bg-gradient-to-r from-gray-800 to-gray-900 text-white">
+    <footer className={`${theme === 'dark' ? darkColors.primary : lightColors.primary} text-white`}>
       <div className="max-w-7xl mx-auto px-4">
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 py-12">
@@ -80,7 +99,7 @@ const Footer = () => {
                 <input
                   type="email"
                   placeholder="Your email"
-                  className="px-4 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="px-4 py-2 rounded  text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
                 <button className="px-4 py-2 bg-blue-500 rounded hover:bg-blue-600 transition-colors">
                   Subscribe
